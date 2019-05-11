@@ -13,8 +13,8 @@ CHECKARR checkNEW(int N) {
 		N = 6;
 	}
 
-	int * arr = malloc((N * N * sizeof(int))/2);
-	memset(arr, 0, (N * N * sizeof(int))/2);
+	int * arr = malloc(((1 + (N * N)) * sizeof(int))/2);
+	memset(arr, 0, ((1 + (N * N)) * sizeof(int))/2);
 	return arr;
 }	
 
