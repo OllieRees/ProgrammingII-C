@@ -34,7 +34,6 @@ int checkSTORE(CHECKARR as, int N, int row, int col, int val) {
 		printf("ERROR: Memory in use of (%d, %d)\n", row, col);
 	}	
 	*(as + i) = val;
-	printf("%d\n", *(as + i));
 	return 1;
 }
 
@@ -55,35 +54,6 @@ int checkFETCH(CHECKARR as, int N, int row, int col) {
 	}
 	
 	int i = (col + (N * row))/2;
-	printf("%d\n", *(as + i)); //stores it correctly, but doesn't fetch it correctly.
 	return *(as + i);
 }
 
-int main(int argc, char * argv[]) {
-	
-	int N;
-	printf("Enter the size of the board : ");
-	scanf("%d", &N);
-	
-	CHECKARR tbl = checkNEW(N);
-	int row = 0;
-	for(row; row < N; row++) {
-		int col = 0;
-		for(col; col < N; col++) {
-			if(row % 2 == col % 2) {
-				int val = (row + col) + (row * col);
-				printf("val : %d, success : %d\n", val, checkSTORE(tbl, N, row, col, val));
-			}
-		}
-	}
-
-	row = 0;
-	for(row; row < N; row++) {
-		int col = 0;
-		for(col; col < N; col++) {
-			if(row % 2 == col % 2) {
-				printf("row : %d, col : %d, val : %d\n", row, col, checkFETCH(tbl, N, row, col));
-			}
-		}
-	}
-}

@@ -26,19 +26,5 @@ int analyse(double *prod, double *sum, double d1, double d2) {
 	}
 	else {
 		return -1;
-	}	
-}
-
-int main(int argc, char * argv[]) {
-	if (argc == 3) {
-		double * prod = malloc(sizeof(double));
-		double * sum = malloc(sizeof(double));
-		double d1 = (double) atof(argv[1]);
-		double d2 = (double) atof(argv[2]);
-		printf("%d\n", analyse(prod, sum, d1, d2));
-		printf("product : %f\tsum : %f\n", *prod, *sum);
-		return 1;
 	}
-	printf("Failed to provide 2 doubles in the command line : program can't run!\n");
-	return 0;
-}
+}	
