@@ -14,12 +14,6 @@ CHECKARR checkNEW(int N) {
 	}
 
 	int * arr = malloc((N * N * sizeof(int))/2);
-	int i = 0;
-	for(i; i < N; i++) {
-		int * ptr = malloc((N * sizeof(int))/2);
-		ptr = (arr + ((N * i)/2));
-	}
-	
 	memset(arr, 0, (N * N * sizeof(int))/2);
 	return arr;
 }	
@@ -35,8 +29,12 @@ int checkSTORE(CHECKARR as, int N, int row, int col, int val) {
 		return -1;
 	}
 	
-	int i = (col + 1 + (N * row))/2;	
+	int i = (col + (N * row))/2;
+	if(*(as + i) != 0) {
+		printf("ERROR: Memory in use of (%d, %d)\n", row, col);
+	}	
 	*(as + i) = val;
+	printf("%d\n", *(as + i));
 	return 1;
 }
 
@@ -56,20 +54,36 @@ int checkFETCH(CHECKARR as, int N, int row, int col) {
 		return -1;
 	}
 	
-	int i = (col + 1 + (N * row))/2;
+	int i = (col + (N * row))/2;
+	printf("%d\n", *(as + i)); //stores it correctly, but doesn't fetch it correctly.
 	return *(as + i);
 }
 
 int main(int argc, char * argv[]) {
 	
-	int N = 10;
+	int N;
+	printf("Enter the size of the board : ");
+	scanf("%d", &N);
 	
 	CHECKARR tbl = checkNEW(N);
-	printf("%d\n", checkSTORE(tbl, N, 0, 0, 5));
-	printf("%d\n", checkFETCH(tbl, N, 0, 0));
-	printf("%d\n", checkFETCH(tbl, N, 1, 1));
-	printf("%d\n", checkSTORE(tbl, N, 0, 1, 1));
-	printf("%d\n", checkFETCH(tbl, N, 0, 1));
-	printf("%d\n", checkSTORE(tbl, N, 0, 2, 8));
-	printf("%d\n", checkFETCH(tbl, N, 0, 2)); 
+	int row = 0;
+	for(row; row < N; row++) {
+		int col = 0;
+		for(col; col < N; col++) {
+			if(row % 2 == col % 2) {
+				int val = (row + col) + (row * col);
+				printf("val : %d, success : %d\n", val, checkSTORE(tbl, N, row, col, val));
+			}
+		}
+	}
+
+	row = 0;
+	for(row; row < N; row++) {
+		int col = 0;
+		for(col; col < N; col++) {
+			if(row % 2 == col % 2) {
+				printf("row : %d, col : %d, val : %d\n", row, col, checkFETCH(tbl, N, row, col));
+			}
+		}
+	}
 }
