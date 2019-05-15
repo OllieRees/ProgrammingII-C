@@ -64,5 +64,3 @@ int checkFETCH(CHECKARR as, int N, int row, int col) {
 	int i = (col + (N * row))/2;
 	return *(as + i);
 }
-
-int main() {}
