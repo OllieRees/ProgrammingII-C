@@ -34,9 +34,6 @@ int checkSTORE(CHECKARR as, int N, int row, int col, int val) {
 	}
 	
 	int i = (col + (N * row))/2;
-	if(*(as + i) != 0) {
-		printf("ERROR: Memory in use of (%d, %d)\n", row, col);
-	}	
 	*(as + i) = val;
 	return 1;
 }
