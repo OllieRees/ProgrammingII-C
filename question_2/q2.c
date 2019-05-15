@@ -9,21 +9,25 @@ int checkSTORE(CHECKARR as, int N, int row, int col, int val);
 int checkFETCH(CHECKARR as, int N, int row, int col);
 
 CHECKARR checkNEW(int N) {
-	if (N <= 0) {
-		N = 6;
-	}
-
 	int * arr = malloc(((1 + (N * N)) * sizeof(int))/2);
 	memset(arr, 0, ((1 + (N * N)) * sizeof(int))/2);
 	return arr;
 }	
 
 int checkSTORE(CHECKARR as, int N, int row, int col, int val) {
+	//invalid N
+	if(N <= 0) {
+		return -1;	
+	}
+
 	//index out of bounds
 	if(row >= N || col >= N) {
 		return -1;
 	}
-	
+	if(row < 0 || col < 0) { 
+		return -1;
+	}
+
 	//improper rules
 	if(row % 2 != col % 2) {
 		return -1;
@@ -39,14 +43,18 @@ int checkSTORE(CHECKARR as, int N, int row, int col, int val) {
 
 int checkFETCH(CHECKARR as, int N, int row, int col) {
 	
-	//index out of bounds
-	if(row < 0 || col < 0) {
+	//invalid N
+	if(N <= 0) {
 		return -1;
 	}
 
-	if(row >= N || col >= N) {
+	//index out of bounds
+	if(row < 0 || col < 0) { 
 		return -1;
 	}
+	if(row >= N || col >= N) { 
+		return -1;
+	}	
 	
 	//improper rules
 	if(row % 2 != col % 2) {
@@ -57,3 +65,4 @@ int checkFETCH(CHECKARR as, int N, int row, int col) {
 	return *(as + i);
 }
 
+int main() {}
