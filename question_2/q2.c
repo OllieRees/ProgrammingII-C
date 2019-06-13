@@ -12,7 +12,7 @@ CHECKARR checkNEW(int N) {
 	
 	if(N <= 0) {
 		printf("No board.\n");
-		exit(0);
+		exit(1);
 	}
 
 	if(N > 0) {
@@ -89,4 +89,11 @@ int checkFETCH(CHECKARR as, int N, int row, int col) {
 	
 	int i = (col + (N * row))/2;
 	return *(as + i);
+}
+
+int main(char * argv[], int argc) {
+	int n = -10;
+	int* ptr = checkNEW(n);
+	printf("%d\n", checkSTORE(ptr, n, 0, 0, 10));
+	printf("%d\n", checkFETCH(ptr, n, 0, 0));
 }
